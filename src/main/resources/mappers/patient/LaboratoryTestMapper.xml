@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.patientDAO.ILaboratoryTestDAO">
+
+    <select id="getById">
+        select * from laboratory_tests where id = #{id}
+    </select>
+    <select id="getAllBillings">
+        SELECT * FROM laboratory_tests
+    </select>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO laboratory_tests (test_details, patient_id) VALUES (#{testDetails}, #{patientId})
+    </insert>
+
+    <update id="update">
+        UPDATE laboratory_tests SET test_details = #{testDetails}, patient_id = #{patientId} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM laboratory_tests WHERE id = #{id}
+    </delete>
+
+    <resultMap id="HospitalResultMap" type="com.solvd.laba.domain.patient.LaboratoryTest" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="test_details" property="testDetails"/>
+        <result column="patient_id" property="patientId"/>
+
+    </resultMap>
+
+</mapper>

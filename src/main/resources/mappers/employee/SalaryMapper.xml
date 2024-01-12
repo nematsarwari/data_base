@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.employeeDAO.ISalaryDAO">
+
+    <select id="getById">
+        select * from Salaries where employee_id = #{employeeId}
+    </select>
+
+    <select id="getAllSalaries">
+        SELECT * FROM Salaries
+    </select>
+
+    <insert id="insert" keyColumn="employee_id" keyProperty="employeeId" useGeneratedKeys="true">
+        INSERT INTO salaries(salary) VALUES (#{salary})
+    </insert>
+
+    <update id="update">
+        UPDATE salaries SET salary = #{salary} WHERE employee_id = #{employeeId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM salaries WHERE employee_id = #{employeeId}
+    </delete>
+
+    <resultMap id="HospitalResultMap" type="com.solvd.laba.domain.employee.Salary" autoMapping="false">
+        <id column="employee_id" property="employeeId"/>
+        <result column="salary" property="salary"/>
+
+    </resultMap>
+
+</mapper>

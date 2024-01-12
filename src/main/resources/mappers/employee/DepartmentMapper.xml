@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.employeeDAO.IDepartmentDAO">
+
+    <select id="getById">
+        select * from departments where department_id = #{departmentId}
+    </select>
+
+    <select id="getAllDepartments">
+        SELECT * FROM departments
+    </select>
+
+    <insert id="insert" keyColumn="department_id" keyProperty="departmentId" useGeneratedKeys="true">
+        INSERT INTO departments (department_name) VALUES (#{departmentName})
+    </insert>
+
+    <update id="update">
+        UPDATE departments SET department_name = #{departmentName} WHERE department_id = #{departmentId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM departments WHERE department_id = #{departmentId}
+    </delete>
+
+    <resultMap id="HospitalResultMap" type="com.solvd.laba.domain.employee.Department" autoMapping="false">
+        <id column="department_id" property="departmentId"/>
+        <result column="department_name" property="departmentName"/>
+    </resultMap>
+
+</mapper>

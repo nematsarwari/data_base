@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.patientDAO.IBillingDAO">
+
+    <select id="getById">
+        select * from billings where bill_number = #{billNumber}
+    </select>
+
+    <select id="getAllBillings">
+        SELECT * FROM billings
+    </select>
+
+    <insert id="insert" keyColumn="bill_number" keyProperty="billNumber" useGeneratedKeys="true">
+        INSERT INTO billings (bill_details, amount, patient_id) VALUES (#{billDetails}, #{amount}, #{patientId})
+    </insert>
+
+    <update id="update">
+        UPDATE billings SET bill_details = #{billDetails}, amount = #{amount}, patient_id = #{patientId} WHERE bill_number = #{billNumber}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM billings WHERE bill_number = #{billNumber}
+    </delete>
+
+    <resultMap id="HospitalResultMap" type="com.solvd.laba.domain.patient.Billing" autoMapping="false">
+        <id column="bill_number" property="billNumber"/>
+        <result column="bill_details" property="billDetails"/>
+        <result column="amount" property="amount"/>
+        <result column="patient_id" property="patientId"/>
+
+    </resultMap>
+
+</mapper>
